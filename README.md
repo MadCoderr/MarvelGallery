@@ -9,15 +9,15 @@ Uses Marvel Comics API as a service which contains all the information about its
 
 In application there is characters gallery, based on RecyclerView, and search bar that is allowing to type filter for presented characters.
 
-![Gallery](files/mg1.png)
+![Gallery](files/m1.png)
 
-![Search usage 1](files/mg4.png)
-![Search usage 2](files/mg5.png)
+![Search usage 1](files/m4.png)
+![Search usage 2](files/m5.png)
 
 When we click to character icon, then his profile is displayed. It contains its name, description and his occurrences in comics, series, stories and events.
 
-![Character profile 1](files/mg2.png)
-![Character profile 2](files/mg4.png)
+![Character profile 1](files/m2.png)
+![Character profile 2](files/m4.png)
 
 # Development
 
