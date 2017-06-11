@@ -9,9 +9,7 @@ Uses Marvel Comics API as a service which contains all the information about its
 
 In application there is characters gallery, based on RecyclerView, and search bar that is allowing to type filter for presented characters.
 
-Whole app flow:
-
-![Gallery](files/flow.gif)
+![App flow gif](files/flow.gif)
 
 # Development
 
