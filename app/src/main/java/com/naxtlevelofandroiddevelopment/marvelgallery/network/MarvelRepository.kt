@@ -4,14 +4,15 @@ import com.naxtlevelofandroiddevelopment.marvelgallery.model.MarvelCharacter
 import com.naxtlevelofandroiddevelopment.marvelgallery.network.providers.Provider
 import com.naxtlevelofandroiddevelopment.marvelgallery.network.providers.RetrofitApi
 import io.reactivex.Observable
+import io.reactivex.Single
 
 interface MarvelRepository {
 
-    fun getCharacters(searchQuery: String?): Observable<List<MarvelCharacter>>
+    fun getCharacters(searchQuery: String?): Single<List<MarvelCharacter>>
 
     class Impl(val api: MarvelApi) : MarvelRepository {
 
-        override fun getCharacters(searchQuery: String?): Observable<List<MarvelCharacter>> = api.getCharacters(
+        override fun getCharacters(searchQuery: String?): Single<List<MarvelCharacter>> = api.getCharacters(
                 offset = 0,
                 limit = elementsOnListLimit,
                 searchQuery = searchQuery

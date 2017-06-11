@@ -9,7 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -20,14 +19,13 @@ object RetrofitApi : Provider<Retrofit>({
     makeRetrofit(addRequiredQuery())
 })
 
-fun makeRetrofit(vararg interceptors: Interceptor) = Retrofit.Builder()
+fun makeRetrofit(vararg interceptors: Interceptor): Retrofit = Retrofit.Builder()
         .baseUrl("http://gateway.marvel.com/v1/public/")
         .client(makeHttpClient(interceptors))
         .addConverters()
         .build()
 
 fun Retrofit.Builder.addConverters(): Retrofit.Builder = this
-        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 

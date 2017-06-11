@@ -19,10 +19,10 @@ data class MarvelCharacter(
             name = dto.name ?: "",
             imageUrl = dto.imageUrl,
             description = dto.description ?: "",
-            comics = dto.comics?.items?.mapNotNull { it.name }.orEmpty(),
-            series = dto.series?.items?.mapNotNull { it.name }.orEmpty(),
-            stories = dto.stories?.items?.mapNotNull { it.name }.orEmpty(),
-            events = dto.events?.items?.mapNotNull { it.name }.orEmpty()
+            comics = dto.comics.items.map { it.name },
+            series = dto.series.items.map { it.name },
+            stories = dto.stories.items.map { it.name },
+            events = dto.events.items.map { it.name }
     )
 
     companion object {

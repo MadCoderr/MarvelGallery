@@ -3,6 +3,7 @@ package com.naxtlevelofandroiddevelopment.marvelgallery.network
 import com.naxtlevelofandroiddevelopment.marvelgallery.network.dto.CharacterMarvelDto
 import com.naxtlevelofandroiddevelopment.marvelgallery.network.dto.DataWrapper
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,5 +14,5 @@ interface MarvelApi {
             @Query("offset") offset: Int?,
             @Query("limit") limit: Int?,
             @Query("nameStartsWith") searchQuery: String?
-    ): Observable<DataWrapper<List<CharacterMarvelDto>>>
+    ): Single<DataWrapper<List<CharacterMarvelDto>>>
 }

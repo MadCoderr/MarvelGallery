@@ -35,12 +35,6 @@ fun Context.toast(text: String, length: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, length).show()
 }
 
-var View.visible: Boolean
-    get() = visibility == View.VISIBLE
-    set(value) {
-        visibility = if (value) View.VISIBLE else View.GONE
-    }
-
 fun EditText.addOnTextChangedListener(callback: (String)->Unit) {
     addTextChangedListener(object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}

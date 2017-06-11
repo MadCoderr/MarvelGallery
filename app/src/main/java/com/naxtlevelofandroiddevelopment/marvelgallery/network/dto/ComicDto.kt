@@ -2,5 +2,5 @@ package com.naxtlevelofandroiddevelopment.marvelgallery.network.dto
 
 
 class ComicDto {
-    var name: String? = null
+    lateinit var name: String
 }

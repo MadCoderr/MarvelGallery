@@ -1,16 +1,15 @@
 package com.naxtlevelofandroiddevelopment.marvelgallery.network.dto
 
-
 class CharacterMarvelDto {
 
-    var name: String? = null
-    var description: String? = null
-    var thumbnail: ImageDto? = null
-    var comics: CharacterComicWrapper? = null
-    var series: CharacterComicWrapper? = null
-    var stories: CharacterComicWrapper? = null
-    var events: CharacterComicWrapper? = null
+    lateinit var name: String
+    lateinit var description: String
+    lateinit var thumbnail: ImageDto
+    var comics: CharacterComicWrapper = CharacterComicWrapper()
+    var series: CharacterComicWrapper = CharacterComicWrapper()
+    var stories: CharacterComicWrapper = CharacterComicWrapper()
+    var events: CharacterComicWrapper = CharacterComicWrapper()
 
     val imageUrl: String
-        get() = thumbnail!!.completeImagePath
+        get() = thumbnail.completeImagePath
 }

@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Window
-import com.marcinmoskala.kotlinandroidviewbindings.bindToSwipeRefresh
 import com.naxtlevelofandroiddevelopment.marvelgallery.R
 import com.naxtlevelofandroiddevelopment.marvelgallery.model.MarvelCharacter
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.PresenterBaseActivity
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.addOnTextChangedListener
+import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.bindToSwipeRefresh
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.heroprofile.CharacterProfileActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
