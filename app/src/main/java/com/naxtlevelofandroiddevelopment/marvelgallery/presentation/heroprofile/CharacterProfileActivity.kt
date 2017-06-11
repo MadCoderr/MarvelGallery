@@ -18,9 +18,16 @@ class CharacterProfileActivity : PresenterBaseActivity(), HeroProfileView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hero_profile)
         setUpToolbar()
-        headerView.loadImageCenterCropped(character.imageUrl)
-        descriptionView.text = character.description
-        occurencesView.setHtmlText(presenter.makeOccurencesText())
+    }
+
+    override fun setUpCharacterImage(photoUrl: String) {
+        headerView.loadImageCenterCropped(photoUrl)
+    }
+
+    override fun setUpCharacterData(name: String, description: String, occurrences: String) {
+        toolbar.title = name
+        descriptionView.text = description
+        occurencesView.setHtmlText(occurrences)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when {
@@ -29,7 +36,6 @@ class CharacterProfileActivity : PresenterBaseActivity(), HeroProfileView {
     }
 
     private fun setUpToolbar() {
-        toolbar.title = character.name
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Window
+import com.naxtlevelofandroiddevelopment.marvelgallery.BuildConfig
 import com.naxtlevelofandroiddevelopment.marvelgallery.R
 import com.naxtlevelofandroiddevelopment.marvelgallery.model.MarvelCharacter
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.PresenterBaseActivity
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.addOnTextChangedListener
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.bindToSwipeRefresh
+import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.toast
 import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.heroprofile.CharacterProfileActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,13 +24,21 @@ class MainActivity : PresenterBaseActivity(), MainView {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
         recyclerView.layoutManager = GridLayoutManager(this, 2) as RecyclerView.LayoutManager
-        swipeRefreshView.setOnRefreshListener { presenter.searchChanged(searchView.text.toString()) }
-        searchView.addOnTextChangedListener { newText -> presenter.searchChanged(newText) }
+        swipeRefreshView.setOnRefreshListener { presenter.onSearchChanged(searchView.text.toString()) }
+        searchView.addOnTextChangedListener { newText -> presenter.onSearchChanged(newText) }
     }
 
     override fun show(items: List<MarvelCharacter>) {
         val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
         recyclerView.adapter = MainListAdapter(categoryItemAdapters)
+    }
+
+    override fun showError(error: Throwable) {
+        toast("Error: ${error.message}")
+        if(BuildConfig.DEBUG) {
+            error.printStackTrace()
+            error.cause?.printStackTrace()
+        }
     }
 
     private fun createCategoryItemAdapter(character: MarvelCharacter)

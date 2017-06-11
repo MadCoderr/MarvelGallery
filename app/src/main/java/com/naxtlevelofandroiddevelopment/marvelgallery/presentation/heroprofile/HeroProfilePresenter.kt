@@ -6,10 +6,19 @@ import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.Prese
 
 class HeroProfilePresenter(val view: HeroProfileView, val character: MarvelCharacter) : Presenter() {
 
-    val htmlPoint = "&#8226;"
-    val htmlEnter = "<br/>"
+    private val htmlPoint = "&#8226;"
+    private val htmlEnter = "<br/>"
 
-    fun makeOccurencesText(): String {
+    override fun onStart() {
+        view.setUpCharacterImage(character.imageUrl)
+        view.setUpCharacterData(
+                name = character.name,
+                description = character.description,
+                occurrences = makeOccurrencesText()
+        )
+    }
+
+    private fun makeOccurrencesText(): String {
         var occurencesText = ""
 
         fun addListIfNotEmpty(introductionTextId: Int, list: List<String>) {
@@ -29,3 +38,4 @@ class HeroProfilePresenter(val view: HeroProfileView, val character: MarvelChara
 
     private fun List<String>.toHtmlList(): String = fold("") { acc, item -> acc + "$htmlPoint $item $htmlEnter" }
 }
+

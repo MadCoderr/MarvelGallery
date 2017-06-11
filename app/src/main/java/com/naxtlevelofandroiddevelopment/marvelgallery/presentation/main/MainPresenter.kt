@@ -7,14 +7,13 @@ import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.Prese
 
 class MainPresenter(val view: MainView) : Presenter() {
 
-    val repository by MarvelRepository.lazyGet()
+    private val repository by MarvelRepository.lazyGet()
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun onStart() {
         loadCharacters()
     }
 
-    fun searchChanged(newText: String) {
+    fun onSearchChanged(newText: String) {
         loadCharacters(newText)
     }
 
@@ -23,6 +22,7 @@ class MainPresenter(val view: MainView) : Presenter() {
         subscriptions += repository
                 .getCharacters(qualifiedSearchQuery)
                 .applySchedulers()
+                .retry()
                 .smartSubscribe(
                         onSuccess = view::show,
                         onError = view::showError,
