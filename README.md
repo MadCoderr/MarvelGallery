@@ -20,7 +20,7 @@ We can search for our favorite character:
 When we click to character icon, then his profile is displayed. It contains its name, description and his occurrences in comics, series, stories and events:
 
 ![Character profile 1](files/m2.png)
-![Character profile 2](files/m4.png)
+![Character profile 2](files/m3.png)
 
 # Development
 
