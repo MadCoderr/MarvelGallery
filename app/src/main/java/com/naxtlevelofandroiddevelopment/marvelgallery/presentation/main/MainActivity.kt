@@ -1,0 +1,40 @@
+package com.naxtlevelofandroiddevelopment.marvelgallery.presentation.main
+
+import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.Window
+import com.marcinmoskala.kotlinandroidviewbindings.bindToSwipeRefresh
+import com.naxtlevelofandroiddevelopment.marvelgallery.R
+import com.naxtlevelofandroiddevelopment.marvelgallery.model.MarvelCharacter
+import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.PresenterBaseActivity
+import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.common.addOnTextChangedListener
+import com.naxtlevelofandroiddevelopment.marvelgallery.presentation.heroprofile.CharacterProfileActivity
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : PresenterBaseActivity(), MainView {
+
+    override var refresh by bindToSwipeRefresh(R.id.swipeRefreshView)
+    override val presenter: MainPresenter by lazy { MainPresenter(this) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(R.layout.activity_main)
+        recyclerView.layoutManager = GridLayoutManager(this, 2) as RecyclerView.LayoutManager
+        swipeRefreshView.setOnRefreshListener { presenter.searchChanged(searchView.text.toString()) }
+        searchView.addOnTextChangedListener { newText -> presenter.searchChanged(newText) }
+    }
+
+    override fun show(items: List<MarvelCharacter>) {
+        val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
+        recyclerView.adapter = MainListAdapter(categoryItemAdapters)
+    }
+
+    private fun createCategoryItemAdapter(character: MarvelCharacter)
+            = CategoryItemAdapter(character, { showHeroProfile(character) })
+
+    private fun showHeroProfile(character: MarvelCharacter) {
+        CharacterProfileActivity.start(this, character)
+    }
+}
