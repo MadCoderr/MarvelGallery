@@ -9,7 +9,7 @@ class MainPresenter(val view: MainView) : Presenter() {
 
     private val repository by MarvelRepository.lazyGet()
 
-    override fun onStart() {
+    override fun onCreate() {
         loadCharacters()
     }
 

@@ -9,6 +9,7 @@ abstract class PresenterBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.onCreate()
     }
 
     override fun onStart() {
